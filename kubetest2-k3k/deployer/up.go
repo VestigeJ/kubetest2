@@ -40,9 +40,21 @@ func (d *deployer) IsUp() (up bool, err error) {
 
 func (d *deployer) Up() error {
 	args := []string{
-		"create", "cluster",
-		"--name", d.Name,
+		"cluster", "create",
+		"--kubeconfig", d.KubeconfigPath,
 		"--namespace", d.Namespace,
+		"--name", d.Name,
+		"--servers", string(d.Servers),
+		"--agents", string(d.Agents),
+		"--token", d.Token,
+		"--cluster-cidr", "d.ClusterCIDR",
+		"--service-cidr", "d.ServiceCIDR",
+		"--persistence-type", "d.PersistenceType",
+		"--storage-class-name", "d.StorageClassName",
+		"--server-args", "d.ServerArgs",
+		"--agent-args", "d.AgentArgs",
+		"--version", "d.Version",
+		"--mode", "d.Mode",
 	}
 
 	klog.V(0).Infof("Up(): creating K3K cluster...\n")

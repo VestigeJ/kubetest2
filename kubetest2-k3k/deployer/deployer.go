@@ -56,8 +56,8 @@ type deployer struct {
 	KubeconfigPath   string `flag:"kubeconfig" desc:"--kubeconfig Kubeconfig path for k3k create cluster"`
 	Namespace        string `flag:"namespace" desc:"--namespace Namespace to create the k3k cluster in"`
 	Name             string `flag:"name" desc:"--name Name of the k3k cluster"`
-	ServerCount      int    `default:"1"`
-	AgentCount       int    `default:"0"`
+	Servers          int    `default:"1"`
+	Agents           int    `default:"0"`
 	Token            string `flag:"token" desc:"--token Token to use for k3k cluster creation"`
 	ClusterCIDR      string `flag:"cluster-cidr" desc:"--cluster-cidr Cluster CIDR to use for k3k cluster creation"`
 	ServiceCIDR      string `flag:"service-cidr" desc:"--service-cidr Service CIDR to use for k3k cluster creation"`
@@ -66,8 +66,8 @@ type deployer struct {
 	ServerArgs       string `flag:"server-args" desc:"--server-args Additional arguments to pass to the k3k server nodes"`
 	AgentArgs        string `flag:"agent-args" desc:"--agent-args Additional arguments to pass to the k3k agent nodes"`
 	Mode             string `default:"shared" desc:"--mode Mode to run k3k in (shared, virtual)"`
-	InstallVersion   string `default:"v1.32.1" desc:"--version Version of k3s to install"`
-	K3kConfigPath    string `flag:"k3k-config" desc:" $HOME/$Name-kubeconfig.yaml"`
+	Version          string `default:"v1.32.1" desc:"--version Version of k3s to install"`
+	// K3kConfigPath    string `flag:"k3k-config" desc:" $HOME/$Name-kubeconfig.yaml"`
 
 	logsDir string `default:"/tmp/k3k/logs"`
 }
@@ -88,9 +88,9 @@ func (d *deployer) Kubeconfig() (string, error) {
 	return filepath.Join(home, d.Name+"-kubeconfig.yaml"), nil
 }
 
-func (d *deployer) Version() string {
+func (d *deployer) GetVersion() string {
 	// return GitTag
-	return d.InstallVersion
+	return d.Version
 }
 
 func bindFlags(d *deployer) *pflag.FlagSet {
