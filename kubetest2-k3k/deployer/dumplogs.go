@@ -35,7 +35,7 @@ func (d *deployer) DumpClusterLogs() error {
 
 	klog.V(0).Infof("DumpClusterLogs(): exporting k3k cluster logs...\n")
 	// we want to see the output so use process.ExecJUnit
-	process.ExecJUnit("kubectl", args, os.Environ())
+	// process.ExecJUnit("kubectl", args, os.Environ())
 	args = []string{"cluster-info dump", d.logsDir}
 	return process.ExecJUnit("kubectl", args, os.Environ())
 }

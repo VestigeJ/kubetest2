@@ -56,8 +56,8 @@ type deployer struct {
 	KubeconfigPath   string `flag:"kubeconfig" desc:"--kubeconfig Kubeconfig path for k3k create cluster"`
 	Namespace        string `flag:"namespace" desc:"--namespace Namespace to create the k3k cluster in"`
 	Name             string `flag:"name" desc:"--name Name of the k3k cluster"`
-	Servers          int    `default:"1"`
-	Agents           int    `default:"0"`
+	Servers          string `default:"1"`
+	Agents           string `default:"0"`
 	Token            string `flag:"token" desc:"--token Token to use for k3k cluster creation"`
 	ClusterCIDR      string `flag:"cluster-cidr" desc:"--cluster-cidr Cluster CIDR to use for k3k cluster creation"`
 	ServiceCIDR      string `flag:"service-cidr" desc:"--service-cidr Service CIDR to use for k3k cluster creation"`
