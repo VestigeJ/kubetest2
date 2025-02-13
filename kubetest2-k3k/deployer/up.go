@@ -47,14 +47,14 @@ func (d *deployer) Up() error {
 		"--servers", d.Servers,
 		"--agents", d.Agents,
 		"--token", d.Token,
-		"--cluster-cidr", "d.ClusterCIDR",
-		"--service-cidr", "d.ServiceCIDR",
-		"--persistence-type", "d.PersistenceType",
-		"--storage-class-name", "d.StorageClassName",
-		"--server-args", "d.ServerArgs",
-		"--agent-args", "d.AgentArgs",
-		"--version", "d.Version",
-		"--mode", "d.Mode",
+		"--cluster-cidr", d.ClusterCIDR,
+		"--service-cidr", d.ServiceCIDR,
+		"--persistence-type", d.PersistenceType,
+		"--storage-class-name", d.StorageClassName,
+		"--server-args", d.ServerArgs,
+		"--agent-args", d.AgentArgs,
+		"--version", d.Version,
+		"--mode", d.Mode,
 	}
 
 	klog.V(0).Infof("Up(): creating K3K cluster...\n")
