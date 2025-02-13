@@ -58,6 +58,7 @@ func (d *deployer) Up() error {
 	}
 
 	klog.V(0).Infof("Up(): creating K3K cluster...\n")
+	klog.V(0).Infof("all the args are...", args)
 	// we want to see the output so use process.ExecJUnit
 	return process.ExecJUnit("k3kcli", args, os.Environ())
 }
