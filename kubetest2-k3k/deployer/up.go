@@ -41,20 +41,51 @@ func (d *deployer) IsUp() (up bool, err error) {
 func (d *deployer) Up() error {
 	args := []string{
 		"cluster", "create",
-		"--kubeconfig", d.KubeconfigPath,
-		"--namespace", d.Namespace,
-		"--name", d.Name,
-		"--servers", d.Servers,
-		"--agents", d.Agents,
-		"--token", d.Token,
-		"--cluster-cidr", d.ClusterCIDR,
-		"--service-cidr", d.ServiceCIDR,
-		"--persistence-type", d.PersistenceType,
-		"--storage-class-name", d.StorageClassName,
-		"--server-args", d.ServerArgs,
-		"--agent-args", d.AgentArgs,
-		"--version", d.Version,
-		"--mode", d.Mode,
+	}
+
+	// TODO: reflect struct fields instead of this big if chain
+	// assignee: VestigeJ
+	if d.KubeconfigPath != "" {
+		args = append(args, "--kubeconfig", d.KubeconfigPath)
+	}
+	if d.Namespace != "" {
+		args = append(args, "--namespace", d.Namespace)
+	}
+	if d.Name != "" {
+		args = append(args, "--name", d.Name)
+	}
+	if d.Servers != "" {
+		args = append(args, "--servers", d.Servers)
+	}
+	if d.Agents != "" {
+		args = append(args, "--agents", d.Agents)
+	}
+	if d.Token != "" {
+		args = append(args, "--token", d.Token)
+	}
+	if d.ClusterCIDR != "" {
+		args = append(args, "--cluster-cidr", d.ClusterCIDR)
+	}
+	if d.ServiceCIDR != "" {
+		args = append(args, "--service-cidr", d.ServiceCIDR)
+	}
+	if d.PersistenceType != "" {
+		args = append(args, "--persistence-type", d.PersistenceType)
+	}
+	if d.StorageClassName != "" {
+		args = append(args, "--storage-class-name", d.StorageClassName)
+	}
+	if d.StorageClassName != "" {
+		args = append(args, "--server-args", d.ServerArgs)
+	}
+	if d.ServerArgs != "" {
+		args = append(args, "--agent-args", d.AgentArgs)
+	}
+	if d.Mode != "" {
+		args = append(args, "--mode", d.Mode)
+	}
+	if d.Version != "" {
+		args = append(args, "--version", d.Version)
 	}
 
 	klog.V(0).Infof("Up(): creating K3K cluster...\n")
