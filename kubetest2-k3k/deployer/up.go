@@ -44,7 +44,11 @@ func (d *deployer) Up() error {
 	}
 
 	// TODO: reflect struct fields instead of this big if chain
-	// assignee: VestigeJ
+	for i := 0; i < len(d.flags); i++ {
+		if d.flag[i] != "" {
+			args = append(args, "--"+d[i])
+		}
+	}
 	if d.KubeconfigPath != "" {
 		args = append(args, "--kubeconfig", d.KubeconfigPath)
 	}

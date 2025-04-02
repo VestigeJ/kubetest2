@@ -56,17 +56,17 @@ type deployer struct {
 	KubeconfigPath   string `flag:"kubeconfig" desc:"--kubeconfig Kubeconfig path for k3k create cluster"`
 	Namespace        string `flag:"namespace" desc:"--namespace Namespace to create the k3k cluster in"`
 	Name             string `flag:"name" desc:"--name Name of the k3k cluster"`
-	Servers          string `default:"1"`
-	Agents           string `default:"0"`
+	Servers          string `flag:"servers" default:"1"`
+	Agents           string `flag:"agents" default:"0"`
 	Token            string `flag:"token" desc:"--token Token to use for k3k cluster creation"`
 	ClusterCIDR      string `flag:"cluster-cidr" desc:"--cluster-cidr Cluster CIDR to use for k3k cluster creation"`
 	ServiceCIDR      string `flag:"service-cidr" desc:"--service-cidr Service CIDR to use for k3k cluster creation"`
-	PersistenceType  string `default:"ephemeral" desc:"--persistence-type Persistence mode for the nodes (ephermal, static, dynamic)"`
+	PersistenceType  string `flag:"persistence-type" default:"ephemeral" desc:"--persistence-type Persistence mode for the nodes (ephermal, static, dynamic)"`
 	StorageClassName string `flag:"storage-class-name" desc:"--storage-class-name Storage class name for dynamic persistence type"`
 	ServerArgs       string `flag:"server-args" desc:"--server-args Additional arguments to pass to the k3k server nodes"`
 	AgentArgs        string `flag:"agent-args" desc:"--agent-args Additional arguments to pass to the k3k agent nodes"`
-	Mode             string `default:"shared" desc:"--mode Mode to run k3k in (shared, virtual)"`
-	Version          string `default:"v1.32.1" desc:"--version Version of k3s to install"`
+	Mode             string `flag:"mode" default:"shared" desc:"--mode Mode to run k3k in (shared, virtual)"`
+	Version          string `flag:"version" default:"v1.32.1" desc:"--version Version of k3s to install"`
 	// K3kConfigPath    string `flag:"k3k-config" desc:" $HOME/$Name-kubeconfig.yaml"`
 
 	logsDir string `default:"/tmp/k3k/logs"`
